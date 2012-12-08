@@ -1,0 +1,73 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
+	
+	    <TextView
+	        android:id="@+id/config_description_text"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:linksClickable="true"
+	        android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	    <EditText
+	        android:id="@+id/config_user"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="@string/config_username_hint" >
+	
+	        <requestFocus />
+	    </EditText>
+	
+	    <EditText
+	        android:id="@+id/config_pass"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="@string/config_password_hint"
+	        android:inputType="textPassword" />
+	    
+	    <TextView
+	        android:id="@+id/config_search_text"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:linksClickable="true"
+	        android:text="@string/config_search_text"
+	        android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	
+	        <Button
+	            android:id="@+id/config_search_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/config_search"
+	            android:onClick="search" />
+	
+	        <Spinner
+	            android:id="@+id/config_search_spinner"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:prompt="@string/config_search_spinner_text" />
+	    </LinearLayout>
+	    
+	
+	    <Button
+	        android:id="@+id/config_save_button"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/config_save"
+	        android:onClick="save" />
+	
+	</LinearLayout>
+	    
+</ScrollView>

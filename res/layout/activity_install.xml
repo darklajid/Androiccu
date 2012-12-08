@@ -1,0 +1,165 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
+
+	    <TextView
+	        android:id="@+id/install_download_title_text"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/install_download_title_text"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	    <TextView
+	        android:id="@+id/install_download_description_text"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/install_download_description_text"
+	        android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	
+	        <Button
+	            android:id="@+id/install_download_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:onClick="download"
+	            android:text="@string/install_download_button_text" />
+	
+	        <android.support.v7.widget.Space
+	            android:id="@+id/install_download_space"
+	            android:layout_weight="1"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content" />
+	
+	        <ImageView
+	            android:id="@+id/install_download_image"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="bottom"
+	            android:src="@android:drawable/checkbox_off_background" />
+	
+	    </LinearLayout>
+	
+	    <TextView
+	        android:id="@+id/install_install_title_text"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/install_install_title_text"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	    <TextView
+	        android:id="@+id/install_install_description_text"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/install_install_description_text"
+	        android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	
+	        <Button
+	            android:id="@+id/install_install_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:onClick="install"
+	            android:text="@string/install_install_button_text" />
+	
+	        <android.support.v7.widget.Space
+	            android:id="@+id/install_install_space"
+	            android:layout_weight="1"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content" />
+	
+	        <ImageView
+	            android:id="@+id/install_install_image"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="bottom"
+	            android:src="@android:drawable/checkbox_off_background" />
+	
+	    </LinearLayout>
+	
+	    <TextView
+	        android:id="@+id/install_config_title_text"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/install_config_title_text"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	    <TextView
+	        android:id="@+id/install_config_description_text"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/install_config_description_text"
+	        android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	
+		    <Button
+		        android:id="@+id/install_config_button"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:onClick="config"
+		        android:text="@string/install_config_button_text" />
+	
+	        <android.support.v7.widget.Space
+	            android:id="@+id/install_config_space"
+	            android:layout_weight="1"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content" />
+	
+	        <ImageView
+	            android:id="@+id/install_config_image"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="bottom"
+	            android:src="@android:drawable/checkbox_off_background" />
+	
+	    </LinearLayout>
+	
+	    <android.support.v7.widget.Space
+	        android:id="@+id/space1"
+	        android:layout_weight="1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="0dp" />
+	
+	    <TextView
+	        android:id="@+id/install_uninstall_title_text"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/install_uninstall_title_text"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	    <TextView
+	        android:id="@+id/install_uninstall_description_text"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/install_uninstall_description_text"
+	        android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	
+	        <Button
+	            android:id="@+id/install_uninstall_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:onClick="uninstall"
+	            android:text="@string/install_uninstall_button_text" />
+	    </LinearLayout>
+
+	</LinearLayout>
+	    
+</ScrollView>

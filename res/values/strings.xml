@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Androiccu</string>
+    
+    <string name="title_activity_main">Androiccu</string>
+    <string name="title_activity_install">Setup</string>
+    <string name="title_activity_config">Configure</string>
+    
+    <string name="menu_install">Setup</string>
+    <string name="menu_install_back">Back</string>
+    <string name="menu_config">Configure</string>
+    <string name="menu_config_back">Back</string>
+    <string name="menu_install_warning">Must be in stopped state to access setup</string>
+    <string name="menu_config_warning">Must be in stopped state to access config</string>
+    
+    <string name="main_start">Start</string>
+    <string name="main_stop">Stop</string>
+    <string name="main_checking">Checking</string>
+    <string name="main_not_installed">Not installed !\nRun first Setup using the menu button and pressing Setup</string>
+    <string name="main_not_configured">Not configured !\nConfigure first using the menu button and pressing Configure</string>
+    <string name="main_not_running">Not running</string>
+    <string name="main_starting">Starting</string>
+    <string name="main_running">Running</string>
+    <string name="main_stopping">Stopping</string>
+    <string name="main_day">day</string>
+    <string name="main_hour">hour</string>
+    <string name="main_minute">minute</string>
+    <string name="main_second">second</string>
+    <string name="main_plural">s</string>
+    <string name="main_status">Tunnel Status:</string>
+    <string name="main_description_status">TunnelStatus</string>
+	<string name="install_download_url">http://de.web-troubles.ch</string>
+	<string name="install_filename">androiccu_0.1.tgz</string>
+    <string name="install_download_title_text">1. Download</string>
+    <string name="install_download_description_text">This will download the required files from the Internet. This needs a working Internet connection</string>
+    <string name="install_download_button_text">Download</string>
+    <string name="install_install_title_text">2. Install</string>
+    <string name="install_install_description_text">This will install the downloaded files after having created a backup of overridden files. Your phone needs to be rooted for this to work</string>
+    <string name="install_install_button_text">Install</string>
+    <string name="install_config_title_text">3. Configure</string>
+    <string name="install_config_description_text">Go to the configuration screen to set your IPv6 tunnel informations</string>
+    <string name="install_config_button_text">Configure</string>
+    <string name="install_uninstall_title_text">Uninstall</string>
+    <string name="install_uninstall_description_text">This will remove the installed files and restore the initial state from the backup</string>
+    <string name="install_uninstall_button_text">Uninstall</string>
+    <string name="config_description_text">You need to enter your sixxs.net login informations. If you don\'t have and account create one on &lt;a href=\"http://www.sixxs.net\"&gt;http://www.sixxs.net&lt;a&gt;</string>
+    <string name="config_username_hint">username</string>
+    <string name="config_password_hint">password</string>
+    <string name="config_search_text">Search available and compatible tunnels for your account and select the desired one</string>
+    <string name="config_search">Search</string>
+    <string name="config_search_spinner_text">Select tunnel</string>
+    <string name="config_save">Save</string>
+
+</resources>
