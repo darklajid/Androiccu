@@ -186,9 +186,9 @@ public class ConfigActivity extends Activity {
 				outputStream.close();
 				
 				MyShell shell = new MyShell();
-				errors.clear();
 				tunnels.clear();
-				tunnels = shell.exec("su", "aiccu tunnels " + filesDir.getPath() + "/test_aiccu.conf", errors);
+				errors.clear();
+				shell.exec("su", "aiccu tunnels " + filesDir.getPath() + "/test_aiccu.conf", tunnels, errors);
 				
 				if (tunnels.size() == 0) {
 					return false;
@@ -220,7 +220,7 @@ public class ConfigActivity extends Activity {
 
 			updateUI();
 		}
-		
+
     	private Vector<String> errors = new Vector<String>();
 	}
 
@@ -237,12 +237,13 @@ public class ConfigActivity extends Activity {
 				outputStream.close();
 		    	
 				MyShell shell = new MyShell();
+				results.clear();
 				errors.clear();
 		    	String[] cmds = {
 		    			"mkdir /data/aiccu",
 		    			"cp " + filesDir.getPath() + "/aiccu.conf " + dataDir.getPath() + "/aiccu/",
 		        		"chmod 600 " + dataDir.getPath() + "/aiccu/aiccu.conf"};
-		    	shell.execMulti("su", cmds, errors);
+		    	shell.execMulti("su", cmds, results, errors);
 		    	
 		    	if (shell.exec("sh", "ls " + Environment.getDataDirectory().getPath() + "/aiccu/aiccu.conf").size() == 0) {
 		    		return false;
@@ -262,7 +263,13 @@ public class ConfigActivity extends Activity {
 				String msg = "Save failed:\n";
 				
 				if (errors.size() == 0) {
-					msg += "no error message";
+					if (results.size() == 0) {
+						msg += "no error message";
+					} else {
+						for (int i = 0; i < results.size(); i++) {
+							msg += results.elementAt(i) + "\n";
+						}
+					}
 				} else {
 					for (int i = 0; i < errors.size(); i++) {
 						msg += errors.elementAt(i) + "\n";
@@ -276,7 +283,8 @@ public class ConfigActivity extends Activity {
 				finish();
 			}
 		}
-		
+
+    	private Vector<String> results = new Vector<String>();
     	private Vector<String> errors = new Vector<String>();
 	}
 	

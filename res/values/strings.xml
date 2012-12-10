@@ -31,7 +31,7 @@
     <string name="main_status">Tunnel Status:</string>
     <string name="main_description_status">TunnelStatus</string>
 	<string name="install_download_url">http://de.web-troubles.ch</string>
-	<string name="install_filename">androiccu_0.1.tgz</string>
+	<string name="install_filename">androiccu_0.1.tar</string>
     <string name="install_download_title_text">1. Download</string>
     <string name="install_download_description_text">This will download the required files from the Internet. This needs a working Internet connection</string>
     <string name="install_download_button_text">Download</string>

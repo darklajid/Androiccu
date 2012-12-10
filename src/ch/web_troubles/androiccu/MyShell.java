@@ -39,9 +39,7 @@ public class MyShell {
     	return res;
     }
     
-    public Vector<String> exec(String sh, String command, Vector<String> errors) {
-	   	Vector<String> res = new Vector<String>();
-    	
+    public void exec(String sh, String command, Vector<String> results, Vector<String> errors) {
     	try {
 	    	Process process = Runtime.getRuntime().exec(sh);
 	    	
@@ -49,7 +47,7 @@ public class MyShell {
 	    	DataOutputStream inputStream = new DataOutputStream(process.getOutputStream());
 	    	BufferedReader outputStream = new BufferedReader(new InputStreamReader(process.getInputStream()));
 	    	BufferedReader errorStream = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-	    	
+	    	results.clear();
     		errors.clear();
 	    	
     	   inputStream.writeBytes(command + "\n");
@@ -58,7 +56,7 @@ public class MyShell {
     	   Thread.sleep(100);
 
     	   while (outputStream.ready()) {
-    		   res.add(outputStream.readLine());
+    		   results.add(outputStream.readLine());
     	   }
     	   while (errorStream.ready()) {
     		   errors.add(errorStream.readLine());
@@ -69,7 +67,7 @@ public class MyShell {
 	    	process.waitFor();
 
 			while (outputStream.ready()) {
-				res.add(outputStream.readLine());
+				results.add(outputStream.readLine());
 			}
 			while (errorStream.ready()) {
 				errors.add(errorStream.readLine());
@@ -77,8 +75,6 @@ public class MyShell {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	
-    	return res;
     }
     
     public Vector<String> execMulti(String sh, String commands[]) {
@@ -115,9 +111,7 @@ public class MyShell {
     	return res;
     }
     
-    public Vector<String> execMulti(String sh, String commands[], Vector<String> errors) {
-	   	Vector<String> res = new Vector<String>();
-    	
+    public void execMulti(String sh, String commands[], Vector<String> results, Vector<String> errors) {
     	try {
 	    	Process process = Runtime.getRuntime().exec(sh);
 	    	
@@ -125,7 +119,7 @@ public class MyShell {
 	    	DataOutputStream inputStream = new DataOutputStream(process.getOutputStream());
 	    	BufferedReader outputStream = new BufferedReader(new InputStreamReader(process.getInputStream()));
 	    	BufferedReader errorStream = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-	    	
+	    	results.clear();
     		errors.clear();
 	    	
 	    	for (String single : commands) {
@@ -135,7 +129,7 @@ public class MyShell {
 	    	   Thread.sleep(100);
 
 	    	   while (outputStream.ready()) {
-	    		   res.add(outputStream.readLine());
+	    		   results.add(outputStream.readLine());
 	    	   }
 	    	   while (errorStream.ready()) {
 	    		   errors.add(errorStream.readLine());
@@ -146,7 +140,7 @@ public class MyShell {
 	    	process.waitFor();
 
 			while (outputStream.ready()) {
-				res.add(outputStream.readLine());
+				results.add(outputStream.readLine());
 			}
     	   while (errorStream.ready()) {
     		   errors.add(errorStream.readLine());
@@ -154,7 +148,5 @@ public class MyShell {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	
-    	return res;
     }
 }

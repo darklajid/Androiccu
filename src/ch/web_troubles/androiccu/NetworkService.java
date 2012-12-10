@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.IBinder;
@@ -41,7 +42,7 @@ public class NetworkService extends Service {
 		File file = new File(this.getFilesDir(), "log");
 		
 		if (file.exists()) {
-			file.delete();
+		//	file.delete(); // TODO: put back again, to see how long the services stays stopped when that happens
 		}
 		aiccuStarted = false;
 		
@@ -128,7 +129,7 @@ public class NetworkService extends Service {
 	private boolean networkConnected;
 	private int networkType;
 	private String networkTypeName;
-	private String wifiBSSID;
+	private String wifiSSID;
 	ConnectivityManager connectivityManager;
 	NetworkInfo networkInfo;
 	private Intent updateUIIntent = new Intent();
@@ -188,7 +189,7 @@ public class NetworkService extends Service {
 					    		stopAiccu(false);
 			    			}
 			    		} else {
-			    			log("Some network changes occured");
+			    			//log("some network changes occured");
 			    		}
 		    		}
     			} catch (Exception e) {
@@ -196,12 +197,26 @@ public class NetworkService extends Service {
     			}
     		} else if (intent.getAction().equals(android.net.wifi.WifiManager.NETWORK_STATE_CHANGED_ACTION)) {
     			try {
-    				NetworkInfo info = (NetworkInfo)intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
-    				if (info.getState() == NetworkInfo.State.CONNECTED) {
-    					wifiBSSID = intent.getExtras().getString(WifiManager.EXTRA_BSSID);
-    					log("wifi connected to " + wifiBSSID);
-    				} else {
-    					log("wifi disconnected");
+    				if (networkType == ConnectivityManager.TYPE_WIFI)
+    				{
+    					NetworkInfo info = (NetworkInfo)intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
+    					if (info.getState() == NetworkInfo.State.CONNECTED) {
+    						if (!networkConnected) {
+    							WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+    							WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+    							wifiSSID = wifiInfo.getSSID();
+    							networkConnected = true;
+    							
+    							log("new wifi connection" + ((wifiSSID.length() > 0) ? (" to " + wifiSSID) : ""));
+					    		startAiccu(false);
+    						}
+    					} else {
+        					if (networkConnected) {
+        						networkConnected = false;
+        						log("wifi disconnection");
+        						stopAiccu(false);
+        					}
+    					}
     				}
 				} catch (Exception e) {
 					e.printStackTrace();

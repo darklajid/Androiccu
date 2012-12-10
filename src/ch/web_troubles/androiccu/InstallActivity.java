@@ -309,12 +309,13 @@ public class InstallActivity extends Activity {
 				String m[] = getSystemMountInfo();
 		    	String cmds[] = {"mount -o rw,remount -t " + m[2] + " " + m[0] + " " + m[1],
 		    			"cp -d /system/xbin/ip /system/xbin/ip.androiccu.backup",
-		    			"tar xzf " + filesDir.getPath() + "/" + downloadFilename,
+		    			"tar xf " + filesDir.getPath() + "/" + downloadFilename,
 		    			"mount -o ro,remount -t " + m[2] + " " + m[0] + " " + m[1],
 		    			"mkdir /data/aiccu",
 		    			"chmod 775 /data/aiccu"};
+		    	results.clear();
 		    	errors.clear();
-		    	shell.execMulti("su", cmds, errors);
+		    	shell.execMulti("su", cmds, results, errors);
 				
 		    	if (shell.exec("sh", "ls /system/xbin/aiccu").size() > 0) {
 		    		installed = true;
@@ -334,7 +335,13 @@ public class InstallActivity extends Activity {
 				String msg = "Installation failed:\n";
 				
 				if (errors.size() == 0) {
-					msg += "no error message";
+					if (results.size() == 0) {
+						msg += "no error message";
+					} else {
+						for (int i = 0; i < results.size(); i++) {
+							msg += results.elementAt(i) + "\n";
+						}
+					}
 				} else {
 					for (int i = 0; i < errors.size(); i++) {
 						msg += errors.elementAt(i) + "\n";
@@ -347,6 +354,7 @@ public class InstallActivity extends Activity {
 			updateUI();
 		}
 
+    	private Vector<String> results = new Vector<String>();
     	private Vector<String> errors = new Vector<String>();
 	}
 
@@ -362,8 +370,9 @@ public class InstallActivity extends Activity {
 		    			"rm /system/xbin/aiccu",
 		    			"mount -o ro,remount -t " + m[2] + " " + m[0] + " " + m[1],
 		    			"rm -r /data/aiccu"};
+		    	results.clear();
 		    	errors.clear();
-		    	shell.execMulti("su", cmds, errors);
+		    	shell.execMulti("su", cmds, results, errors);
 	    	} catch (Exception e) {
 	    		e.printStackTrace();
 	    		return false;
@@ -377,7 +386,13 @@ public class InstallActivity extends Activity {
 				String msg = "Uninstallation failed:\n";
 				
 				if (errors.size() == 0) {
-					msg += "no error message";
+					if (results.size() == 0) {
+						msg += "no error message";
+					} else {
+						for (int i = 0; i < results.size(); i++) {
+							msg += results.elementAt(i) + "\n";
+						}
+					}
 				} else {
 					for (int i = 0; i < errors.size(); i++) {
 						msg += errors.elementAt(i) + "\n";
@@ -389,7 +404,8 @@ public class InstallActivity extends Activity {
 			
 			new CheckTask().execute();
 		}
-		
+
+    	private Vector<String> results = new Vector<String>();
     	private Vector<String> errors = new Vector<String>();
 	}
 	

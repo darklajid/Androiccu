@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
     	button.setEnabled(true);
     }
     
-    
+    /*
     private String millisToTime(long millis) {
     	long seconds =  millis / 1000;
     	
@@ -147,6 +147,7 @@ public class MainActivity extends Activity {
     	
     	return days + " " + getResources().getString(R.string.main_day) + (days > 1 ? getResources().getString(R.string.main_plural) : "");
     }
+    */
     
     private void popup(String title, String message) {
 		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
