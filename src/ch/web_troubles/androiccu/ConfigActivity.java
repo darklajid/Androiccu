@@ -248,6 +248,12 @@ public class ConfigActivity extends Activity {
 		    	if (shell.exec("sh", "ls " + Environment.getDataDirectory().getPath() + "/aiccu/aiccu.conf").size() == 0) {
 		    		return false;
 		    	}
+				
+				File file = new File(filesDir, "test_aiccu.conf");
+				
+				if (file.exists()) {
+					file.delete();
+				}
 	    	} catch (Exception e) {
 	    		e.printStackTrace();
 	    		return false;
