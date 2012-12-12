@@ -56,13 +56,38 @@ public class MainActivity extends Activity {
     @Override
 	public void onResume() {
 		super.onResume();
-
-		registerReceiver(receiver, new IntentFilter(ACTION_UPDATE_UI));
-		registerReceiver(receiver, new IntentFilter(ACTION_SET_STATUS));
-
-		Intent intent = new Intent();
-		intent.setAction(NetworkService.ACTION_GET_STATUS);
-		sendBroadcast(intent);
+		
+    	try {
+			int previousVersion = 0;
+			File file = new File(filesDir, "version");
+			
+			if (file.exists()) {
+				FileInputStream inputStream;
+				
+				inputStream = openFileInput("version");
+				BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+				
+				if (r.ready()) {
+					previousVersion = Integer.valueOf(r.readLine());
+				}
+				
+				inputStream.close();
+			}
+			
+			if (previousVersion < getPackageManager().getPackageInfo(getPackageName(), 0).versionCode) {
+		    	Intent intent = new Intent(this, ChangeLogActivity.class);
+		        startActivity(intent);
+			}
+	
+			registerReceiver(receiver, new IntentFilter(ACTION_UPDATE_UI));
+			registerReceiver(receiver, new IntentFilter(ACTION_SET_STATUS));
+	
+			Intent intent = new Intent();
+			intent.setAction(NetworkService.ACTION_GET_STATUS);
+			sendBroadcast(intent);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
 	}
     
     @Override

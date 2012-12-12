@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ch.web_troubles.androiccu"
-    android:versionCode="5"
-    android:versionName="0.5" >
+    android:versionCode="6"
+    android:versionName="0.6" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -13,11 +13,10 @@
     <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
 
     <application
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:allowBackup="true" >
-        
+        android:theme="@style/AppTheme" >
         <activity
             android:name="ch.web_troubles.androiccu.MainActivity"
             android:label="@string/title_activity_main" >
@@ -42,8 +41,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.web_troubles.androiccu.MainActivity" />
         </activity>
-        <service android:name="ch.web_troubles.androiccu.NetworkService"
+
+        <service
+            android:name="ch.web_troubles.androiccu.NetworkService"
             android:process=":service" />
+
+        <activity
+            android:name="ch.web_troubles.androiccu.ChangeLogActivity"
+            android:label="@string/title_activity_change_log"
+            android:parentActivityName="ch.web_troubles.androiccu.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.web_troubles.androiccu.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

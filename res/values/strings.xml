@@ -2,18 +2,16 @@
 <resources>
 
     <string name="app_name">Androiccu</string>
-    
     <string name="title_activity_main">Androiccu</string>
     <string name="title_activity_install">Setup</string>
     <string name="title_activity_config">Configure</string>
-    
+    <string name="title_activity_change_log">ChangeLog</string>
     <string name="menu_install">Setup</string>
     <string name="menu_install_back">Back</string>
     <string name="menu_config">Configure</string>
     <string name="menu_config_back">Back</string>
     <string name="menu_install_warning">Must be in stopped state to access setup</string>
     <string name="menu_config_warning">Must be in stopped state to access config</string>
-    
     <string name="main_start">Start</string>
     <string name="main_stop">Stop</string>
     <string name="main_checking">Checking</string>
@@ -30,8 +28,8 @@
     <string name="main_plural">s</string>
     <string name="main_status">Tunnel Status:</string>
     <string name="main_description_status">TunnelStatus</string>
-	<string name="install_download_url">http://de.web-troubles.ch</string>
-	<string name="install_filename">androiccu_0.1.tar</string>
+    <string name="install_download_url">http://de.web-troubles.ch</string>
+    <string name="install_filename">androiccu_0.1.tar</string>
     <string name="install_download_title_text">1. Download</string>
     <string name="install_download_description_text">This will download the required files from the Internet. This needs a working Internet connection</string>
     <string name="install_download_button_text">Download</string>
@@ -51,5 +49,8 @@
     <string name="config_search">Search</string>
     <string name="config_search_spinner_text">Select tunnel</string>
     <string name="config_save">Save</string>
+    <string name="changelog_title">ChangeLog</string>
+    <string name="changelog_changes">v0.6\n- fix install bug \"tar: invalid option --j\"\n- automatically reconnect on network changes\n\nv0.5\n- fix install for some Samsung Galaxys\n\nv0.4\n- autodetect available tunnels\n\nv0.3\n- fix download bug for Honeycomb and ICS</string>
+    <string name="changelog_ok_button_text">ok</string>
 
 </resources>

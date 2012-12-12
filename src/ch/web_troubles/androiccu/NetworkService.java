@@ -42,7 +42,7 @@ public class NetworkService extends Service {
 		File file = new File(this.getFilesDir(), "log");
 		
 		if (file.exists()) {
-		//	file.delete(); // TODO: put back again, to see how long the services stays stopped when that happens
+			file.delete();
 		}
 		aiccuStarted = false;
 		
