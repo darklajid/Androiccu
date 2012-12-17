@@ -264,18 +264,18 @@ public class InstallActivity extends Activity {
 	    		connection.connect();
 		    	InputStream response = connection.getInputStream();
 				FileOutputStream outputStream;
-		    	byte[] buffer = new byte[200*1024];
+		    	byte[] buffer = new byte[300*1024]; // TODO must be dynamic !
 		    	int read = 0;
 		    	int tread = 0;
 		    	
-		    	while ((read = response.read(buffer, tread, 200 * 1024 - tread)) > 0) {
+		    	while ((read = response.read(buffer, tread, 300 * 1024 - tread)) > 0) {
 		    		tread += read;
 		    	}
 		    	
 		    	response.close();
 	
 				outputStream = openFileOutput(downloadFilename, Context.MODE_PRIVATE);
-				outputStream.write(buffer);
+				outputStream.write(buffer, 0, tread);
 				outputStream.close();
 				
 				File file = new File(filesDir, downloadFilename);
