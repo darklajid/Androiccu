@@ -44,8 +44,6 @@ public class MainActivity extends Activity {
     	button.setEnabled(false);
     	button = (Button) findViewById(R.id.main_button_stop);
     	button.setEnabled(false);
-
-		new CheckTask().execute();
     }
     
     @Override
@@ -58,6 +56,8 @@ public class MainActivity extends Activity {
 		super.onResume();
 		
     	try {
+    		new CheckTask().execute();
+    		
 			int previousVersion = 0;
 			File file = new File(filesDir, "version");
 			
