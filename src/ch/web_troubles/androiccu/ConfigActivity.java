@@ -109,7 +109,8 @@ public class ConfigActivity extends Activity {
     	
     	Spinner spinner = (Spinner) findViewById(R.id.config_search_spinner);
     	List<String> spinnerList = new ArrayList<String>();
-    	
+
+		spinnerList.add("");
     	if (tunnels.size() > 0) {
 	    	for (int i = 0; i < tunnels.size(); i++) {
 	    		String[] s = tunnels.elementAt(i).split(" ");
@@ -140,6 +141,9 @@ public class ConfigActivity extends Activity {
 	private class CheckTask extends AsyncTask<Void, Void, Boolean> {
 		protected Boolean doInBackground(Void... dummy) {
 			try {
+				username = "";
+				password = "";
+				tunnel = "";
 				MyShell shell = new MyShell();
 				shell.exec("su", "cp " + dataDir.getPath() + "/aiccu/aiccu.conf" + filesDir.getPath());
 				FileInputStream inputStream;
@@ -230,7 +234,12 @@ public class ConfigActivity extends Activity {
 				//MHC16-SIXXS
 				//C0l7JqkD
 				//T108946
-				String s = "username " + username + "\npassword " + password + "\ntunnel_id " + tunnel + "\nprotocol tic\nserver tic.sixxs.net\nipv6_interface sixxs\nverbose false\ndaemonize true\nautomatic true\nrequiretls false";
+				String s = "username " + username + "\npassword " + password + "\n";
+				
+				if (tunnel.length() > 0) {
+					s += "tunnel_id " + tunnel + "\n";
+				}
+				s += "protocol tic\nserver tic.sixxs.net\nipv6_interface sixxs\nverbose false\ndaemonize true\nautomatic true\nrequiretls false";
 				FileOutputStream outputStream;
 				outputStream = openFileOutput("aiccu.conf", Context.MODE_PRIVATE);
 				outputStream.write(s.getBytes());

@@ -35,8 +35,8 @@ public class NetworkService extends Service {
 		updateUIIntent.setAction(MainActivity.ACTION_UPDATE_UI);
 		setStatusIntent.setAction(MainActivity.ACTION_SET_STATUS);
 
-		registerReceiver(receiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
-		registerReceiver(receiver, new IntentFilter(android.net.wifi.WifiManager.NETWORK_STATE_CHANGED_ACTION));
+//		registerReceiver(receiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
+//		registerReceiver(receiver, new IntentFilter(android.net.wifi.WifiManager.NETWORK_STATE_CHANGED_ACTION));
 		registerReceiver(receiver, new IntentFilter(ACTION_GET_STATUS));
 		
 		File file = new File(this.getFilesDir(), "log");

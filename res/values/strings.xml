@@ -50,7 +50,7 @@
     <string name="config_search_spinner_text">Select tunnel</string>
     <string name="config_save">Save</string>
     <string name="changelog_title">ChangeLog</string>
-    <string name="changelog_changes">v0.6\n- fix install bug \"tar: invalid option --j\"\n- automatically reconnect on network changes\n\nv0.5\n- fix install for some Samsung Galaxys\n\nv0.4\n- autodetect available tunnels\n\nv0.3\n- fix download bug for Honeycomb and ICS</string>
+    <string name="changelog_changes">v0.8\n- remove auto reconnect on lost tunnel as of Sixxx.net\'s policy\n- enable not entering a tunnel id for TIC passwords\nv0.7\n- fix download of corrupted file on some devices\nv0.6\n- fix install bug \"tar: invalid option --j\"\n- automatically reconnect on network changes\n\nv0.5\n- fix install for some Samsung Galaxys\n\nv0.4\n- autodetect available tunnels\n\nv0.3\n- fix download bug for Honeycomb and ICS</string>
     <string name="changelog_ok_button_text">ok</string>
 
 </resources>
