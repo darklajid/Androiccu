@@ -31,28 +31,29 @@ public class ConfigActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_config);
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_config);
 
-    	filesDir = this.getFilesDir();
-    	dataDir = Environment.getDataDirectory();
-        
-        TextView textView = (TextView) findViewById(R.id.config_description_text);
-        textView.setText(Html.fromHtml(getResources().getString(R.string.config_description_text)));
-        textView.setLinksClickable(true);
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
+		filesDir = this.getFilesDir();
+		dataDir = Environment.getDataDirectory();
+
+		TextView textView = (TextView) findViewById(R.id.config_description_text);
+		textView.setText(Html.fromHtml(getResources().getString(
+				R.string.config_description_text)));
+		textView.setLinksClickable(true);
+		textView.setMovementMethod(LinkMovementMethod.getInstance());
 	}
-    
-    //@Override
-    public void onResume() {
-    	super.onResume();
-		
+
+	// @Override
+	public void onResume() {
+		super.onResume();
+
 		File file = new File(filesDir, "aiccu.conf");
-		
+
 		if (file.exists()) {
 			new CheckTask().execute();
 		}
-    }
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -62,34 +63,40 @@ public class ConfigActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-	    case R.id.menu_config_back:
-	    	finish();
-	        return true;
-        }
-        return super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+		case R.id.menu_config_back:
+			finish();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
-	
-    public void search(View view) {
-    	username = ((EditText)findViewById(R.id.config_user)).getText().toString();
-    	password = ((EditText)findViewById(R.id.config_pass)).getText().toString();
 
-    	((Button)findViewById(R.id.config_search_button)).setEnabled(false);
-    	
-    	new SearchTask().execute();
-    }
-	
-    public void save(View view) {
-    	username = ((EditText)findViewById(R.id.config_user)).getText().toString();
-    	password = ((EditText)findViewById(R.id.config_pass)).getText().toString();
-    	tunnel = String.valueOf(((Spinner)findViewById(R.id.config_search_spinner)).getSelectedItem()).split(" ")[0];
+	public void search(View view) {
+		username = ((EditText) findViewById(R.id.config_user)).getText()
+				.toString();
+		password = ((EditText) findViewById(R.id.config_pass)).getText()
+				.toString();
 
-    	((Button)findViewById(R.id.config_save_button)).setEnabled(false);
-    	
-    	new SaveTask().execute();
-    }
+		((Button) findViewById(R.id.config_search_button)).setEnabled(false);
 
-    private void popup(String title, String message) {
+		new SearchTask().execute();
+	}
+
+	public void save(View view) {
+		username = ((EditText) findViewById(R.id.config_user)).getText()
+				.toString();
+		password = ((EditText) findViewById(R.id.config_pass)).getText()
+				.toString();
+		tunnel = String.valueOf(
+				((Spinner) findViewById(R.id.config_search_spinner))
+						.getSelectedItem()).split(" ")[0];
+
+		((Button) findViewById(R.id.config_save_button)).setEnabled(false);
+
+		new SaveTask().execute();
+	}
+
+	private void popup(String title, String message) {
 		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 		alertDialog.setTitle(title);
 		alertDialog.setMessage(message);
@@ -97,46 +104,46 @@ public class ConfigActivity extends Activity {
 			public void onClick(DialogInterface dialog, int which) {
 			}
 		});
-		//alertDialog.setIcon(icon))
+		// alertDialog.setIcon(icon))
 		alertDialog.show();
-    }
-    
-    private void updateUI() {
-    	EditText editText = (EditText) findViewById(R.id.config_user);
-    	editText.setText(username);
-    	editText = (EditText) findViewById(R.id.config_pass);
-    	editText.setText(password);
-    	
-    	Spinner spinner = (Spinner) findViewById(R.id.config_search_spinner);
-    	List<String> spinnerList = new ArrayList<String>();
+	}
+
+	private void updateUI() {
+		EditText editText = (EditText) findViewById(R.id.config_user);
+		editText.setText(username);
+		editText = (EditText) findViewById(R.id.config_pass);
+		editText.setText(password);
+
+		Spinner spinner = (Spinner) findViewById(R.id.config_search_spinner);
+		List<String> spinnerList = new ArrayList<String>();
 
 		spinnerList.add("");
-    	if (tunnels.size() > 0) {
-	    	for (int i = 0; i < tunnels.size(); i++) {
-	    		String[] s = tunnels.elementAt(i).split(" ");
-	    		
-	    		if (s[2].equalsIgnoreCase("ayiya")) {
-	    			spinnerList.add(s[0] + " (@" + s[3] + ")");
-	    		}
-	    	}
-    	} else {
-    		spinnerList.add(tunnel);
-    	}
-    	
-    	ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerList);
-    	dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    	spinner.setAdapter(dataAdapter);
-    	
-    	if (tunnels.size() > 0) {
-    		spinner.performClick();
-    	}
-    }
-    
-    
-    //
-    // AsyncTasks
-    //
+		if (tunnels.size() > 0) {
+			for (int i = 0; i < tunnels.size(); i++) {
+				String[] s = tunnels.elementAt(i).split(" ");
 
+				if (s[2].equalsIgnoreCase("ayiya")) {
+					spinnerList.add(s[0] + " (@" + s[3] + ")");
+				}
+			}
+		} else {
+			spinnerList.add(tunnel);
+		}
+
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, spinnerList);
+		dataAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(dataAdapter);
+
+		if (tunnels.size() > 0) {
+			spinner.performClick();
+		}
+	}
+
+	//
+	// AsyncTasks
+	//
 
 	private class CheckTask extends AsyncTask<Void, Void, Boolean> {
 		protected Boolean doInBackground(Void... dummy) {
@@ -145,72 +152,80 @@ public class ConfigActivity extends Activity {
 				password = "";
 				tunnel = "";
 				MyShell shell = new MyShell();
-				shell.exec("su", "cp " + dataDir.getPath() + "/aiccu/aiccu.conf" + filesDir.getPath());
+				shell.exec("su", "cp " + dataDir.getPath()
+						+ "/aiccu/aiccu.conf" + filesDir.getPath());
 				FileInputStream inputStream;
-				
+
 				inputStream = openFileInput("aiccu.conf");
-				BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+				BufferedReader r = new BufferedReader(new InputStreamReader(
+						inputStream));
 				String s;
-				
+
 				while (r.ready()) {
 					s = r.readLine();
-					
+
 					if (s.substring(0, 8).equalsIgnoreCase("username")) {
-				    	username = s.substring(9);
+						username = s.substring(9);
 					} else if (s.substring(0, 8).equalsIgnoreCase("password")) {
-				    	password = s.substring(9);
+						password = s.substring(9);
 					} else if (s.substring(0, 9).equalsIgnoreCase("tunnel_id")) {
-				    	tunnel = s.substring(10);
+						tunnel = s.substring(10);
 					}
 				}
-	    	} catch (Exception e) {
-	    		e.printStackTrace();
-	    		return false;
-	    	}
-			
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+
 			return true;
 		}
-		
+
 		protected void onPostExecute(Boolean result) {
 			if (!result) {
-				//popup("Error", "Installation failed");
+				// popup("Error", "Installation failed");
 			}
-			
-	    	updateUI();
+
+			updateUI();
 		}
 	}
 
 	private class SearchTask extends AsyncTask<Void, Void, Boolean> {
 		protected Boolean doInBackground(Void... dummy) {
 			try {
-				String s = "username " + username + "\npassword " + password + "\nprotocol tic\nserver tic.sixxs.net\nipv6_interface sixxs\nverbose false\ndaemonize true\nautomatic true\nrequiretls false";
+				String s = "username "
+						+ username
+						+ "\npassword "
+						+ password
+						+ "\nprotocol tic\nserver tic.sixxs.net\nipv6_interface sixxs\nverbose false\ndaemonize true\nautomatic true\nrequiretls false";
 				FileOutputStream outputStream;
-				outputStream = openFileOutput("test_aiccu.conf", Context.MODE_PRIVATE);
+				outputStream = openFileOutput("test_aiccu.conf",
+						Context.MODE_PRIVATE);
 				outputStream.write(s.getBytes());
 				outputStream.close();
-				
+
 				MyShell shell = new MyShell();
 				tunnels.clear();
 				errors.clear();
-				shell.exec("su", "aiccu tunnels " + filesDir.getPath() + "/test_aiccu.conf", tunnels, errors);
-				
+				shell.exec("su", "aiccu tunnels " + filesDir.getPath()
+						+ "/test_aiccu.conf", tunnels, errors);
+
 				if (tunnels.size() == 0) {
 					return false;
 				}
-	    	} catch (Exception e) {
-	    		e.printStackTrace();
-	    		return false;
-	    	}
-			
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+
 			return true;
 		}
-		
+
 		protected void onPostExecute(Boolean result) {
-	    	((Button)findViewById(R.id.config_search_button)).setEnabled(true);
-	    	
+			((Button) findViewById(R.id.config_search_button)).setEnabled(true);
+
 			if (!result) {
 				String msg = "Get tunnels failed:\n";
-				
+
 				if (errors.size() == 0) {
 					msg += "no error message";
 				} else {
@@ -218,62 +233,68 @@ public class ConfigActivity extends Activity {
 						msg += errors.elementAt(i) + "\n";
 					}
 				}
-				
+
 				popup("Error", msg);
 			}
 
 			updateUI();
 		}
 
-    	private Vector<String> errors = new Vector<String>();
+		private Vector<String> errors = new Vector<String>();
 	}
 
 	private class SaveTask extends AsyncTask<Void, Void, Boolean> {
 		protected Boolean doInBackground(Void... dummy) {
 			try {
-				String s = "username " + username + "\npassword " + password + "\n";
-				
+				String s = "username " + username + "\npassword " + password
+						+ "\n";
+
 				if (tunnel.length() > 0) {
 					s += "tunnel_id " + tunnel + "\n";
 				}
 				s += "protocol tic\nserver tic.sixxs.net\nipv6_interface sixxs\nverbose false\ndaemonize true\nautomatic true\nrequiretls false";
 				FileOutputStream outputStream;
-				outputStream = openFileOutput("aiccu.conf", Context.MODE_PRIVATE);
+				outputStream = openFileOutput("aiccu.conf",
+						Context.MODE_PRIVATE);
 				outputStream.write(s.getBytes());
 				outputStream.close();
-		    	
+
 				MyShell shell = new MyShell();
 				results.clear();
 				errors.clear();
-		    	String[] cmds = {
-		    			"mkdir /data/aiccu",
-		    			"cp " + filesDir.getPath() + "/aiccu.conf " + dataDir.getPath() + "/aiccu/",
-		        		"chmod 600 " + dataDir.getPath() + "/aiccu/aiccu.conf"};
-		    	shell.execMulti("su", cmds, results, errors);
-		    	
-		    	if (shell.exec("sh", "ls " + Environment.getDataDirectory().getPath() + "/aiccu/aiccu.conf").size() == 0) {
-		    		return false;
-		    	}
-				
+				String[] cmds = {
+						"mkdir /data/aiccu",
+						"cp " + filesDir.getPath() + "/aiccu.conf "
+								+ dataDir.getPath() + "/aiccu/",
+						"chmod 600 " + dataDir.getPath() + "/aiccu/aiccu.conf" };
+				shell.execMulti("su", cmds, results, errors);
+
+				if (shell.exec(
+						"sh",
+						"ls " + Environment.getDataDirectory().getPath()
+								+ "/aiccu/aiccu.conf").size() == 0) {
+					return false;
+				}
+
 				File file = new File(filesDir, "test_aiccu.conf");
-				
+
 				if (file.exists()) {
 					file.delete();
 				}
-	    	} catch (Exception e) {
-	    		e.printStackTrace();
-	    		return false;
-	    	}
-			
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+
 			return true;
 		}
-		
+
 		protected void onPostExecute(Boolean result) {
-	    	((Button)findViewById(R.id.config_save_button)).setEnabled(false);
-	    	
+			((Button) findViewById(R.id.config_save_button)).setEnabled(false);
+
 			if (!result) {
 				String msg = "Save failed:\n";
-				
+
 				if (errors.size() == 0) {
 					if (results.size() == 0) {
 						msg += "no error message";
@@ -287,19 +308,19 @@ public class ConfigActivity extends Activity {
 						msg += errors.elementAt(i) + "\n";
 					}
 				}
-				
+
 				popup("Error", msg);
-				
+
 				updateUI();
 			} else {
 				finish();
 			}
 		}
 
-    	private Vector<String> results = new Vector<String>();
-    	private Vector<String> errors = new Vector<String>();
+		private Vector<String> results = new Vector<String>();
+		private Vector<String> errors = new Vector<String>();
 	}
-	
+
 	private File filesDir;
 	private File dataDir;
 	private String username;

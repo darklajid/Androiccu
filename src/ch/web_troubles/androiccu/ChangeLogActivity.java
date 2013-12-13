@@ -16,39 +16,43 @@ public class ChangeLogActivity extends Activity {
 		setContentView(R.layout.activity_change_log);
 
 		File file = new File(this.getFilesDir(), "started");
-		
+
 		if (file.exists()) {
 			file.delete();
 		}
 
 		file = new File(this.getFilesDir(), "androiccu_0.1.tar.bz2");
-		
+
 		if (file.exists()) {
 			file.delete();
 		}
 
 		file = new File(this.getFilesDir(), "androiccu_0.1.tgz");
-		
+
 		if (file.exists()) {
 			file.delete();
 		}
 	}
-    
-    //@Override
-    public void onResume() {
-    	super.onResume();
-    }
-    
-    public void onOk(View view) {
-    	try {
+
+	// @Override
+	public void onResume() {
+		super.onResume();
+	}
+
+	public void onOk(View view) {
+		try {
 			FileOutputStream outputStream;
 			outputStream = openFileOutput("version", Context.MODE_PRIVATE);
-			outputStream.write(Integer.toString(getPackageManager().getPackageInfo(getPackageName(), 0).versionCode).getBytes());
+			outputStream.write(Integer
+					.toString(
+							getPackageManager().getPackageInfo(
+									getPackageName(), 0).versionCode)
+					.getBytes());
 			outputStream.close();
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
-    	
-    	finish();
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finish();
+	}
 }
