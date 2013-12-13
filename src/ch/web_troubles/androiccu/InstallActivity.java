@@ -182,10 +182,12 @@ public class InstallActivity extends Activity {
 	   	Vector<String> cmd_ret = shell.exec("sh", "mount");
     	String res[] = {"", "", "", ""};
     	
-    	// My HTC Desire HD running on LeeDroid reports:
+    	// HTC Desire HD running on LeeDroid reports:
     	// /dev/block/mmcblk0p25 on /system type ext4 (ro,relatime,barrier=1,data=ordered,noauto_da_alloc)
-    	// My Samsung S5570 mini on rooted stock ROM reports:
+    	// Samsung S5570 mini on rooted stock ROM reports:
     	// /dev/stl12 /system rfs ro,relatime,vfat,log_off,check=no,gid/uid/rwx,iocharset=utf8 0 0
+    	
+    	// So there seems to be 2 busybox? variants of reporting mounted partions, handling both
     	
     	for (int i = 0; i < cmd_ret.size(); i++) {
     		String[] s = cmd_ret.elementAt(i).split(" ");
@@ -199,7 +201,7 @@ public class InstallActivity extends Activity {
         			break;	
         		}
     		} else {
-        		if (s[1].equalsIgnoreCase("/system")) {
+        		if (s[1].equalsIgnoreCase("/system")) { //  Samsung mode
         			res[0] = s[0];
         			res[1] = s[1];
         			res[2] = s[2];

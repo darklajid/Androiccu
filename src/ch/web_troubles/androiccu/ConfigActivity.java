@@ -231,9 +231,6 @@ public class ConfigActivity extends Activity {
 	private class SaveTask extends AsyncTask<Void, Void, Boolean> {
 		protected Boolean doInBackground(Void... dummy) {
 			try {
-				//MHC16-SIXXS
-				//C0l7JqkD
-				//T108946
 				String s = "username " + username + "\npassword " + password + "\n";
 				
 				if (tunnel.length() > 0) {

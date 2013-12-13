@@ -148,32 +148,6 @@ public class MainActivity extends Activity {
     	button.setEnabled(true);
     }
     
-    /*
-    private String millisToTime(long millis) {
-    	long seconds =  millis / 1000;
-    	
-    	if (seconds < 60) {
-    		return seconds + " " + getResources().getString(R.string.main_second) + (seconds > 1 ? getResources().getString(R.string.main_plural) : "");
-    	}
-    	
-    	long minutes = seconds / 60;
-    	
-    	if (minutes < 60) {
-    		return minutes + " " + getResources().getString(R.string.main_minute) + (minutes > 1 ? getResources().getString(R.string.main_plural) : "");
-    	}
-    	
-    	long hours = minutes / 60;
-    	
-    	if (hours < 24) {
-    		return hours + " " + getResources().getString(R.string.main_hour) + (hours > 1 ? getResources().getString(R.string.main_plural) : "");
-    	}
-    	
-    	long days = hours / 24;
-    	
-    	return days + " " + getResources().getString(R.string.main_day) + (days > 1 ? getResources().getString(R.string.main_plural) : "");
-    }
-    */
-    
     private void popup(String title, String message) {
 		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 		alertDialog.setTitle(title);
